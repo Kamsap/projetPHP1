@@ -5,7 +5,7 @@ if (in_array('create_admin', $_GET)) {
     insertAdmin();
 }
 
-redirectForAuth(false);
+redirectIsNotAdmin();
 
 include('../model/volsclass.php');
 include('./header.php');

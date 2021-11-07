@@ -29,7 +29,7 @@ include('navbar.php');
 
             <?php
             
-            $id_user = $_SESSION["id_user"];
+            $id_user = $_SESSION["auth_user"];
             
 			$info = new Reservation();
 			$res = $info -> reservation_join($id_user);

@@ -34,10 +34,23 @@ function redirectForAuth($ifIsConnect = true)
     }
 }
 
+function redirectIsNotAdmin()
+{
+    if (! isset($_SESSION['auth_user'])) {
+        header('Location: login.php');
+    } elseif (! $_SESSION['auth_user']['is_admin']) {
+        header('Location: index.php');
+    }
+}
+
 function redirectNotFound() {
     header('HTTP/1.1 404 Not Found');
     include('404.php');
     exit();
+}
+
+function is_admin() {
+    return isset($_SESSION['auth_user']) && $_SESSION['auth_user']['is_admin'];
 }
 
 function insertAdmin() {
@@ -57,18 +70,19 @@ function insertAdmin() {
             }
         } else {
             echo $e->getMessage();
+            die();
         }
     }
+}
 
-    die();
+function getVilles()
+{
+    return getDatabase()->query('SELECT * FROM villes')->fetchAll();
 }
 
 function getCircuits()
 {
-    $circuits = getDatabase()->query('SELECT * FROM circuits')->fetchAll();
-    if (count($circuits) > 2) {
-        return $circuits;
-    }
+    return getDatabase()->query('SELECT * FROM circuits')->fetchAll();
 
 //    $circuits = ['circuit cle', '3ag circuit', 'ugobok'];
 //
@@ -85,9 +99,15 @@ function getCircuits()
 
 function getUsers($only_user = false)
 {
-    $query = getDatabase()
-        ->prepare($only_user ? 'SELECT * FROM users WHERE is_admin = false' : 'SELECT * FROM users');
-    $query->execute();
 
-    return $query->fetchAll();
+    $query = 'SELECT * FROM users';
+    if (isset($_SESSION['auth_user']) && isset($_SESSION['auth_user']['id'])) {
+        $query = 'SELECT * FROM users WHERE id != ' . $_SESSION['auth_user']['id'];
+    }
+
+    if ($only_user) {
+        $query .= ' AND is_admin = false';
+    }
+
+    return (getDatabase()->query($query))->fetchAll();
 }

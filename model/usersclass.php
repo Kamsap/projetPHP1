@@ -50,7 +50,7 @@ session_start();
 			$_SESSION["nom"] = $row2["nom"];
 			$_SESSION["prenom"] = $row2["prenom"];
 			$_SESSION["statut"] =  $row2["statut"];
-			$_SESSION["id_user"] =  $row2["id_user"];
+			$_SESSION["auth_user"] =  $row2["id_user"];
 
 			// The mysqli_num_rows() function returns the number of rows in a result set.
 

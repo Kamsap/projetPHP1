@@ -76,9 +76,9 @@ include('./header.php');
                 <div class="col-md-7 mx-auto">
                     <div class="booking-form">
                         <div id="booking-cta">
-                            <h1>Créez un compte</h1>
+                            <h1>Créer un compte</h1>
                             <p>
-                                Créez un compte afin de profiter des services Vite Mon Vole
+                                Créer un compte afin de profiter des services Vite Mon Vole
                                 en toute simplicité.
                             </p>
                         </div>

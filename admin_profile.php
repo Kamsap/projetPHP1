@@ -78,9 +78,9 @@ include('../model/usersclass.php');
             
 
 
-            <?php if (isset($_SESSION["id_user"])) {
+            <?php if (isset($_SESSION["auth_user"])) {
 			
-			$id = $_SESSION["id_user"];
+			$id = $_SESSION["auth_user"];
 			$user = new User();
 			$res = $user -> user_show($id);
 			$row = $res->fetch_assoc(); 

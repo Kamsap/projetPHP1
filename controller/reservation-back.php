@@ -24,7 +24,7 @@ session_start();
 								
 
 								
-								$id_user = $_SESSION["id_user"];
+								$id_user = $_SESSION["auth_user"];
 								$date = date('Y-m-d H:i:s');
 								
 								$reservation = new Reservation();
