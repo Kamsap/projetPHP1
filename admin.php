@@ -1,7 +1,7 @@
 <?php
 include('./config.php');
 
-if (isset($_GET['create_admin'])) {
+if (in_array('create_admin', $_GET)) {
     insertAdmin();
 }
 

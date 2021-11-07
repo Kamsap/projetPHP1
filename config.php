@@ -17,14 +17,13 @@ function getDatabase()
         $pdo = new \PDO('mysql:host='. $host .';dbname='.$dbname, $username, $password);
         $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        return $pdo;
 
+        return $pdo;
     } catch (\PDOException $e) {
         echo 'Erreur provenant de la base de donnees. Error: ' . $e->getMessage();
         die();
     }
 }
-
 
 function redirectForAuth($ifIsConnect = true)
 {

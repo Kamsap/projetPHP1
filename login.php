@@ -17,9 +17,8 @@ if(isset($_POST) && !empty($_POST)) {
     }
 
     if (empty($errors)) {
-        $values['email'] = $datas['email'];
         $query = getDatabase()->prepare('SELECT * FROM users WHERE email = ?');
-        $query->execute([$values['email']]);
+        $query->execute([$datas['email']]);
         if($user = $query->fetch()) {
             if (password_verify($datas['password'], $user->password)) {
                 $_SESSION['auth_user'] = (array) $user;
@@ -32,6 +31,8 @@ if(isset($_POST) && !empty($_POST)) {
     if (empty($errors)) {
         $errors['action'] = 'Une erreur innatendue s\'est produite';
     }
+
+    $values['email'] = $datas['email'];
 }
 
 include('./header.php');
