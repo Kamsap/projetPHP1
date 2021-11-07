@@ -1,65 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include('./config.php');
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+redirectForAuth();
 
-	<title>SKY FLIGHT</title>
+$errors = [];
+$values = [];
+if(isset($_POST) && !empty($_POST)) {
+    $datas = array_map('trim', $_POST);
+    $datas = array_map('htmlentities', $datas);
+    $datas = array_map('strip_tags', $datas);
+    $datas = array_map('stripslashes', $datas);
+    $datas = array_map('htmlspecialchars', $datas);
 
-	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    if (!isset($datas['email']) || !isset($datas['password'])) {
+        $errors['action'] = 'Veuillez remplir tous les champs';
+    }
 
-	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="public/css/bootstrap.min.css" />
+    if (empty($errors)) {
+        $values['email'] = $datas['email'];
+        $query = getDatabase()->prepare('SELECT * FROM users WHERE email = ?');
+        $query->execute([$values['email']]);
+        if($user = $query->fetch()) {
+            if (password_verify($datas['password'], $user->password)) {
+                $_SESSION['auth_user'] = (array) $user;
+                header('Location: index.php');
+            }
+        }
+        $errors['action'] = 'Ces informations d\'identification ne correspondent pas à nos enregistrements';
+    }
 
-	<link type="text/css" rel="stylesheet" href="public/css/style.css" />
+    if (empty($errors)) {
+        $errors['action'] = 'Une erreur innatendue s\'est produite';
+    }
+}
 
+include('./header.php');
 
-</head>
+?>
 
-<body>
-	<div id="booking" class="section">
-		<div class="section-center">
-			<div class="container">
-				<div class="row">
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 mx-auto">
+                    <div class="booking-form">
+                        <div id="booking-cta">
+                            <h1>Se connecter</h1>
+                            <p>
+                                Connectez-vous à l'aide de votre compte Vite Mon Vole et accédez à nos services
+                            </p>
+                        </div>
+                        <div>
+                            <?php if (isset($errors['action'])): ?>
+                                <div class="alert alert-danger">
+                                    <?= $errors['action']; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <form action="" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">E-mail</span>
+                                        <input class="form-control" type="text" name="email" value="<?= $values['email'] ?? ''; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Mot de passe</span>
+                                        <input class="form-control" type="password" name="password" required>
+                                    </div>
+                                </div>
+                            </div>
 
-					<div class="col-md-7 col-md-offset-1">
+                            <p>Si vous avez déjà compte, merci de vous identifiez <span><a href="register.php">ici</a></span></p>
+                            <div class="form-btn">
+                                <button name="login" class="submit-btn">S'identifier</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-						<div class="booking-form">
-							<div id="booking-cta">
-								<h1>Se connecter
-								</h1>
-								<p>Connectez-vous à l'aide de votre compte SKY FLIGHT
-									et accédez à nos services</p>
-							</div>
-							<form action="controller/login-back.php" method="POST">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<span class="form-label">E-mail</span>
-											<input class="form-control" type="text" name="mail">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<span class="form-label">Mot de passe</span>
-											<input class="form-control" type="password" name="password">
-										</div>
-									</div>
-								</div>
-
-								<p>Si vous avez déjà compte, merci de vous identifiez <span><a href="index.php">ici</a></span></p>
-								<div class="form-btn">
-									<button name="go2" class="submit-btn">S'identifier</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-
-</html>
+<?php
+include('./footer.php');
+?>

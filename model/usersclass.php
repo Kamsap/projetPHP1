@@ -19,7 +19,7 @@ session_start();
 
 			if ($row1 == 1) {
 
-				// header("Location: ../index.php");	
+				// header("Location: ../register.php");
 				// $_SESSION['response'] = "user already taken";
 				// $_SESSION['type']= "Danger";
 			
@@ -61,7 +61,7 @@ session_start();
 					# code...
 				} else {
 					# code...
-					header("Location: ../index2.php");
+					header("Location: ../index.php");
 					
 
 				}
@@ -69,7 +69,7 @@ session_start();
 				
 				
 			} else {
-				header("Location: ../index.php");
+				header("Location: ../register.php");
 				
 			}
 		}

@@ -7,7 +7,7 @@ include('../model/reservation_class.php');
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include('heder.php');
+include('header.php');
 
 ?>
 <link type="text/css" rel="stylesheet" href="public/css/table.css" />
@@ -75,7 +75,7 @@ include('navbar.php');
 </body>
 </html>
 <?php
-    include('script.php');
+    include('footer.php');
     ?>
 <script>
         $(document).ready(function () {

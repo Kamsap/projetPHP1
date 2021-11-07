@@ -1,35 +1,40 @@
 <?php
+include('./config.php');
+
+if (isset($_GET['create_admin'])) {
+    insertAdmin();
+}
+
+redirectForAuth(false);
+
 include('../model/volsclass.php');
-
-session_start();
+include('./header.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!---->
+<!--<head>-->
+<!--	<meta charset="utf-8">-->
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<!--	<meta name="description" content="">-->
+<!--	<meta name="author" content="">-->
+<!---->
+<!--	<title>Vite Mon Vole</title>-->
+<!--	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+<!--		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
 
-<head>
-
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-	<title>Sky flight</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-	<link href="public/css/simple-sidebar.css" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="public/css/table.css" />
-
-
-</head>
-
-<body>
+<!--	<link href="public/css/simple-sidebar.css" rel="stylesheet">-->
+<!--	<link type="text/css" rel="stylesheet" href="public/css/table.css" />-->
+<!---->
+<!--</head>-->
+<!---->
+<!--<body>-->
 
 	<div class="d-flex" id="wrapper">
 
 		<!-- Sidebar -->
 		<div class="bg-light border-right" id="sidebar-wrapper">
-			<div class="sidebar-heading">Sky flight </div>
+			<div class="sidebar-heading">Vite Mon Vole </div>
 
 			<div class="list-group list-group-flush">
 
@@ -50,7 +55,6 @@ session_start();
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    </ul>
 
                     <?php if (isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['statut'])) {?>
                     <ul class="navbar-nav ">
@@ -79,11 +83,8 @@ session_start();
                     <?php }; ?>
             </nav>
 
-
-
-
 			<div class="col-md-12 well"  style="margin: 3%;padding: 2%;">
-				<h3 class="text-primary">List des vols desponible</h3>
+				<h3 class="text-primary">Liste des vols desponible</h3>
 				<hr style="border-top:1px dotted #ccc;" />
 				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#form_modal"><span
 						class="glyphicon glyphicon-plus"></span> Ajouter des vols</button>
@@ -205,7 +206,7 @@ session_start();
 
 
 	<?php
-	include('script.php');
+	include('footer.php');
 	?>
 
 	<!-- Menu Toggle Script -->

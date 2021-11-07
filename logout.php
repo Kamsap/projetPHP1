@@ -1,8 +1,5 @@
 <?php
-include('../model/usersclass.php');
-
-$user = new User();
-$User= $user->log_out();
+session_start();
+session_destroy();
 
 header('Location: login.php');
-?>

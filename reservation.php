@@ -10,7 +10,7 @@ include('../model/volsclass.php');
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <?php
-include('heder.php');
+include('header.php');
 ?>
 
 <body>
@@ -44,7 +44,7 @@ include('navbar.php');
 								<h4 class="card-title">Prix : <span style="color:blue"><?= $row['prix']; ?> DH</span>
 								</h4>
 
-								<a href="index.php" class="btn btn-primary">Annuler le vol</a>
+								<a href="register.php" class="btn btn-primary">Annuler le vol</a>
 							</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@ include('navbar.php');
 	</div>
 
 	<?php
-	include('script.php');
+	include('footer.php');
 	?>
 </body>
 

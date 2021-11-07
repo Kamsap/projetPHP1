@@ -8,7 +8,7 @@ session_start();
 
 
 <?php
-include('heder.php');
+include('header.php');
 ?>
 
 <body>
@@ -69,7 +69,7 @@ include('heder.php');
 	</div>
 
 	<?php
-	include('script.php');
+	include('footer.php');
 	?>
 
 </body>

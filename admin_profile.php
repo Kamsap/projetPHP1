@@ -11,7 +11,7 @@ include('../model/usersclass.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sky flight </title>
+    <title>Vite Mon Vole </title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -26,7 +26,7 @@ include('../model/usersclass.php');
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Sky flight </div>
+            <div class="sidebar-heading">Vite Mon Vole </div>
             <div class="list-group list-group-flush">
                 <a href="admin.php" class="list-group-item list-group-item-action bg-light">List des vols</a>
                 <a href="admin_profile.php" class="list-group-item list-group-item-action bg-light">Profile</a>
@@ -170,7 +170,7 @@ include('../model/usersclass.php');
 
 </html>
 <?php
-	include('script.php');
+	include('footer.php');
 	?>
 <script>
     $("#menu-toggle").click(function (e) {

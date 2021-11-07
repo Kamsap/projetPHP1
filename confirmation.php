@@ -4,7 +4,7 @@ include './controller/confirmation-back.php';
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    include('heder.php');
+    include('header.php');
     ?>
 
 <body>
@@ -25,7 +25,7 @@ include('navbar.php');
                 <h4 class="text-light">Prix : <?= $row1['prix'] ?> </h4>
                 <hr>
                 <button type="button" class="btn bg-light p-2 rounded text-center text-dark">
-                    <a href="index2.php"> Confirmer</a>
+                    <a href="index.php"> Confirmer</a>
                 </button>
             </div>
         </div>
@@ -35,7 +35,7 @@ include('navbar.php');
 
 
     <?php
-    include('script.php');
+    include('footer.php');
     ?>
 </body>
 
